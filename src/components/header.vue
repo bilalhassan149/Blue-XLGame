@@ -1,8 +1,13 @@
 <template>
   <div class="head-main">
-    <header class="head f-c">
-      <div class="nav f-c" style="margin-right: 36px">
-        <router-link to="/" :class="{ 'active-nav': $route.path === '/home' }">
+    <header class="head">
+      <div class="f-c">
+        <router-link
+          class="nav"
+          to="/"
+          :class="{ 'active-nav': $route.path === '/home' }"
+          style="margin-right: 64px"
+        >
           <img
             title="汛利娱乐"
             :alt="$en('home.search')"
@@ -10,72 +15,83 @@
             src="../assets/logo.png"
           />
         </router-link>
-      </div>
-      <div
-        class="nav f-c nav-re"
-        v-for="(item, index) in $store.state.appIndex"
-        :key="index"
-      >
-        <router-link
-          class="nav-text"
-          active-class="active-nav"
-          :to="linkFx(item)"
-        >
-          {{ item.gameTypeName }}
-        </router-link>
         <div
-          class="nav-list"
-          v-loading="loadingNav"
-          element-loading-text="加载中.."
-          element-loading-spinner="el-icon-loading"
-          element-loading-background="rgba(0, 0, 0, 0.5)"
+          class="nav f-c nav-re"
+          v-for="(item, index) in $store.state.appIndex"
+          :key="index"
         >
-          <div
-            class="f-c nav-list-img"
-            v-for="(v, n) in item.platforms"
-            :key="n"
+          <router-link
+            class="nav-text"
+            active-class="active-nav"
+            :to="linkFx(item)"
           >
-            <div class="gameImg-main">
-              <img
-                class="gameImg"
-                :class="{
-                  blur: $store.state.gameError.some((e) => e === v.uniqueCode),
-                }"
-                :src="$store.state.iconUrl + v.pcStatic.navitation.backgroud"
-                @click="$goGame(v, n)"
-              />
-              <div
-                class="error"
-                v-show="$store.state.gameError.some((e) => e === v.uniqueCode)"
-              >
-                <img src="../assets/image/maintainaceLogo.png" />
-                <div style="margin-left: 31px; :left ">
-                  {{ $en("general.maintenance") }}
+            {{ item.gameTypeName }}
+          </router-link>
+          <div
+            class="nav-list"
+            v-loading="loadingNav"
+            element-loading-text="加载中.."
+            element-loading-spinner="el-icon-loading"
+            element-loading-background="rgba(0, 0, 0, 0.5)"
+          >
+            <div
+              class="f-c nav-list-img"
+              v-for="(v, n) in item.platforms"
+              :key="n"
+            >
+              <div class="gameImg-main">
+                <img
+                  class="gameImg"
+                  :class="{
+                    blur: $store.state.gameError.some(
+                      (e) => e === v.uniqueCode
+                    ),
+                  }"
+                  :src="$store.state.iconUrl + v.pcStatic.navitation.backgroud"
+                  @click="$goGame(v, n)"
+                />
+                <div
+                  class="error"
+                  v-show="
+                    $store.state.gameError.some((e) => e === v.uniqueCode)
+                  "
+                >
+                  <img src="../assets/image/maintainaceLogo.png" />
+                  <div style="margin-left: 31px; :left ">
+                    {{ $en("general.maintenance") }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <!-- vip -->
-      <div class="nav-bor f-c">
-        <router-link class="nav f-c f" to="/discount" active-class="active-nav">
-          <img src="../assets/image/nav1.png" style="margin-bottom: 1px" />
-          {{ $en("discount.title") }}
-        </router-link>
-        <router-link class="nav f-c f" to="/vips" active-class="active-nav">
-          <img src="../assets/image/vip.png" style="margin-bottom: 3px" />
-          {{ $en("vip.title") }}
-        </router-link>
-      </div>
+
       <!-- login -->
 
       <!-- user -->
-      <div class="nav f-c none" v-if="$store.state.userInfo">
+      <div class="f-c none">
+        <div class="nav-bor f-c">
+          <router-link
+            class="nav f-c f"
+            to="/discount"
+            active-class="active-nav"
+          >
+            <img src="../assets/image/nav1.png" class="img" />
+            {{ $en("discount.title") }}
+          </router-link>
+          <router-link class="nav f-c f" to="/vips" active-class="active-nav">
+            <img src="../assets/image/vip.png" class="img" />
+            {{ $en("vip.title") }}
+          </router-link>
+        </div>
         <div
           class="f-c a-color"
           @click="userFx"
           :class="{ 'active-nav': $route.path === '/user' }"
+          v-if="$store.state.userInfo"
         >
           <div class="f-c avatar">
             <img
@@ -87,26 +103,22 @@
             />
           </div>
           <div>
+            <b class="name">{{ $store.state.userInfo.username }}</b>
             <div class="f-s">
-              <b class="name">{{ $store.state.userInfo.username }}</b>
+              <div class="nav-money">{{ $store.state.money || 0 }} ¥</div>
               <div class="vip f-c">
                 VIP{{ $store.state.userInfo.userLevel }}
               </div>
             </div>
-            <div class="nav-money">{{ $store.state.money || 0 }} ¥</div>
           </div>
         </div>
-      </div>
-      <div style="display: flex" v-else>
-        <div class="f-c login">
+        <div style="display: flex; gap: 8px" v-else>
           <router-link
             class="login-btn"
             to="/login"
             active-class="active-nav"
             >{{ $en("register.log_in") }}</router-link
           >
-        </div>
-        <div class="f-c login">
           <router-link
             class="login-btn"
             to="/register"
@@ -291,79 +303,90 @@ export default {
 
 <style scoped lang="scss">
 .head-main {
-  padding-top: 64px;
+  padding-top: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .head {
+  width: 1840px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   position: fixed;
   top: 0;
   z-index: 3001;
-  width: 100%;
+  margin: 24px 0;
   height: 64px;
-  background: linear-gradient(#c91d05, #441209);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   user-select: none;
+  border-radius: 16px;
+  box-shadow: 0px 0px 14.2px 0px #9fa5b7;
 }
 .head .nav {
   height: 64px;
   margin: 0 25px;
   cursor: pointer;
-  color: #fff;
+  color: #292d32;
   text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .img {
+    height: 32px;
+    width: 32px;
+  }
 }
 .nav-text {
   font-size: 14px;
-  color: #fff;
+  color: #292d32;
   text-decoration: none;
 }
 .head .nav:hover {
-  border-top: 4px solid #fff;
-  border-bottom: 4px solid #fff;
+  border-bottom: 4px solid #0066ff;
   transition: all ease-out 0.2s;
 }
 .active-nav {
   height: 64px;
-  border-top: 4px solid #fff;
-  border-bottom: 4px solid #fff;
+  border-bottom: 4px solid #0066ff;
+  color: #0066ff;
   transition: all ease-out 0.2s;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .nav-logo {
-  width: 137.914px;
-  height: 41.335px;
-  flex-shrink: 0;
-  margin: 0 10px 0 10px;
+  width: 112px;
+  height: 32px;
 }
 .nav-bor {
-  border-right: 2px solid #fff;
-  border-left: 2px solid #fff;
+  border-right: 2px solid #476896;
   margin: 0 20px;
   height: 40px;
   padding: 0 20px;
   font-size: 14px;
   white-space: nowrap;
 }
-.login {
-  width: 107px;
-  height: 32px;
-  border-radius: 70px;
-  border: 1px solid #fff;
-  margin: 0 10px;
-}
+
 .login-btn {
   color: #fff;
   font-size: 14px;
-  width: 99px;
-  height: 26px;
-  border-radius: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 24px;
+  border-radius: 20px;
+  padding: 10px;
   cursor: pointer;
   text-decoration: none;
+  background-color: #476896;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .login-btn:hover {
-  color: #c01c05;
+  color: #476896;
   background: #fff;
 }
 .nav-re {
@@ -383,16 +406,22 @@ export default {
   }
 }
 .nav-list {
-  height: 336px;
-  background-color: rgba(255, 255, 255, 0.7);
+  height: 300px;
+  background: linear-gradient(
+    105.87deg,
+    rgba(0, 0, 0, 0.4) 3.04%,
+    rgba(0, 0, 0, 0.4) 96.05%
+  );
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0px 0px 14px 0px #a5aabc;
+  border-radius: 14px;
   position: fixed;
   z-index: 102;
   left: 0;
   top: 64px;
   display: flex;
   justify-content: center;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   width: 100%;
   display: none;
   animation-name: move;
@@ -406,7 +435,8 @@ export default {
 }
 .nav-list-img .gameImg {
   cursor: pointer;
-  max-height: 300px;
+  height: 250px;
+  width: 250px;
   margin: 0 35px;
 }
 .blur {
@@ -423,8 +453,8 @@ export default {
   top: 0;
   border-radius: 11px;
   z-index: 5;
-  width: 390px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background: rgba(0, 0, 0, 0.5);
   gap: 12px;
   padding-top: 48px;
@@ -456,14 +486,15 @@ export default {
 }
 .vip {
   color: #7b7b7b;
-  font-size: 14px;
-  background: #d9d9d9;
-  border-radius: 2px;
-  padding: 1px 4px;
+  font-size: 12px;
+  background: #0066ff;
+  border-radius: 5px;
+  padding: 4px 8px;
+  color: white;
 }
 .a-color {
   text-decoration: none;
-  color: #fff;
+  color: #0066ff;
 }
 .modal {
   width: 100vw;

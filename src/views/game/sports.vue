@@ -1,44 +1,52 @@
 <template>
-  <div class="game_bg">
-    <div class="game_container">
-      <div class="game_text">
-        <div class="game_title">{{ $en("games.sports") }}</div>
-        <h1 style="font-size: 88px; font-weight: bold">体育游戏</h1>
-        <div style="font-size: 14px; font-weight: bold; width: 518px">
-          {{ $en("games.sports_text") }}
-        </div>
-        <img
-          src="../../assets/image/sports/sportsSponsors.png"
-          style="max-width: 454px; max-height: 94px; margin-left: -16px"
-          :alt="$en('games.sports_text')"
-        />
-        <div
-          class="game_types"
-          v-for="(item, index) in $store.state.appIndex"
-          :key="index"
-          v-show="item.gameType == 1"
-        >
-          <button
-            v-for="(game, n) in item.platforms"
-            :key="n"
-            @click="
-              $goGame(game, n);
-              $store.state.unique = game.uniqueCode;
-            "
-          >
-            <img
-              class="gameLogo"
-              :src="
-                $store.state.iconUrl +
-                $store.state.static.gameIcon[game.uniqueCode]
-              "
-            />
-            <div>{{ game.platformName }}</div>
-          </button>
-        </div>
+  <div class="game_container">
+    <div class="game_text">
+      <div class="game_title">{{ $en("games.sports") }}</div>
+      <div style="font-size: 50px">SPORTS</div>
+      <div style="font-size: 20px; width: 518px; color: black">
+        {{ $en("games.sports_text") }}
       </div>
-      <img class="char" src="../../assets/image/sports/sportsChar.png" />
+      <img
+        src="../../assets/image/sports/sportsSponsors.png"
+        style="height: 60px; width: 512px"
+        :alt="$en('games.sports_text')"
+      />
+      <div
+        class="game_types"
+        v-for="(item, index) in $store.state.appIndex"
+        :key="index"
+        v-show="item.gameType == 1"
+      >
+        <button
+          class="blendScreen"
+          v-for="(game, n) in item.platforms"
+          :key="n"
+          :style="
+            uCode == game
+              ? {
+                  'box-shadow': '0px 0px 14px 0px #408cff',
+                  color: '#408cff',
+                }
+              : {}
+          "
+          @click="
+            uCode = game;
+            $store.state.unique = game.uniqueCode;
+          "
+        >
+          <img
+            class="gameLogo"
+            :src="
+              $store.state.iconUrl +
+              $store.state.static.gameIcon[game.uniqueCode]
+            "
+          />
+          <div>{{ game.platformName }}</div>
+        </button>
+      </div>
+      <div class="enter_now_btn" @click="$goGame(uCode)">进入游戏</div>
     </div>
+    <img class="char" src="../../assets/image/sports/sportsChar.png" />
   </div>
 </template>
 
@@ -47,26 +55,19 @@ export default {
   name: "PCXLGameSports",
 
   data() {
-    return {};
+    return {
+      uCode: "",
+    };
   },
   methods: {},
 };
 </script>
 
 <style lang="scss">
-.game_bg {
-  background-image: url("../../assets/games/game1.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 904px;
-  min-width: 1200px;
-  display: flex;
-  scale: 1.01;
-}
 .char {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 150px;
   height: 100%;
   z-index: 1;
 }

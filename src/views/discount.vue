@@ -1,18 +1,12 @@
 <template>
   <div>
-    <div class="discount view_width">
-      <div class="banner_content">
-        <div style="font-size: 32px; line-height: 32px; letter-spacing: 22px">
-          {{ $en("discount.xunli_offering") }}
-        </div>
-        <div style="font-size: 96px; line-height: 96px">
-          {{ $en("discount.xunli_discount1") }} <br />
-          {{ $en("discount.xunli_discount2") }}!
-        </div>
-      </div>
-    </div>
     <div class="discount_content">
       <div class="content_container">
+        <img
+          src="../../src/assets/games/discount.png"
+          alt=""
+          style="width: 1840px; height: 558px"
+        />
         <div
           class="discount_game"
           v-for="(item, index) in actList.activities"
@@ -87,23 +81,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.discount {
-  background-image: url("../assets/games/discount.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 904px;
-
-  .banner_content {
-    display: flex;
-    flex-direction: column;
-    color: #152334;
-    font-weight: bold;
-    line-height: 1;
-    gap: 8px;
-    padding-left: 300px;
-    padding-top: 300px;
-  }
-}
 .discount_content {
   max-width: 1920px;
   margin: 0 auto;
@@ -112,42 +89,40 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 94px;
-    padding: 120px;
+    margin-bottom: 40px;
     .discount_game {
-     
       display: flex;
       flex-direction: column;
       justify-content: center;
       color: #fff;
-      gap: 6px;
       font-size: 24px;
       position: relative;
       cursor: pointer;
       .img {
-        border-radius: 11px;
-        background: linear-gradient(83deg, #331356 -7.41%, #781000 140.21%);
-        box-shadow: 4px 4px 12px 0px rgba(181, 0, 30, 0.4);
-        height: 280px;
-        width: 1180px;
+        border-radius: 40px;
+        height: 300px;
+        width: 1224px;
+        margin: 12px 0;
       }
       .title {
         font-weight: bold;
       }
       .time {
         position: absolute;
-        top: 63px;
-        left: 74px;
-        color: #fff;
-        font-size: 24px;
-        font-weight: bold;
-        height: 50px;
+        top: 30px;
+        left: 64px;
+        color: #58a1ff;
+        font-size: 26px;
         display: flex;
         align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 2px solid white;
+        padding: 8px;
+        border-radius: 34px;
       }
       .time-img {
-        background: none !important;
-        margin: 0 10px 0 0;
+        height: 34px;
       }
       .time1 {
         position: absolute;

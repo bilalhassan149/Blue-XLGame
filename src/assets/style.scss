@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background: #d9d9d9;
+  background: white;
   font-family: Microsoft YaHei UI;
   user-select: none;
 }
@@ -350,61 +350,100 @@ input[type="number"] {
   display: flex;
   margin: 0 auto;
   position: relative;
-
+  margin: 72px 0;
   .game_text {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    color: white;
+    color: #292d32;
     justify-content: center;
     padding-left: 298px;
     position: relative;
     z-index: 10;
+
     .game_title {
-      text-shadow: 7px 9px 42px rgba(0, 0, 0, 0.69);
-      font-size: 160px;
-      line-height: 160px;
+      background: linear-gradient(180deg, #0b1b53 0%, #375ad6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       font-weight: bold;
+      font-size: 100px;
     }
     .game_types {
       display: flex;
       align-items: center;
-      width: 500px;
-      gap: 10px;
+      gap: 16px;
       font-weight: bold;
       font-size: 22px;
-      button {
-        background: transparent;
-        color: #fff;
-        font-size: 22px;
+      .blendScreen {
+        background: linear-gradient(
+          140.09deg,
+          #e8e8e8 5.39%,
+          #b7b7b7 9.94%,
+          #808080 15.4%,
+          #525252 20.86%,
+          #2e2e2e 26.32%,
+          #151515 31.78%,
+          #050505 36.33%,
+          #000000 39.97%,
+          #adadad 65.46%,
+          #989898 68.19%,
+          #696969 74.56%,
+          #444444 80.93%,
+          #2a2a2a 87.3%,
+          #1a1a1a 92.76%,
+          #141414 96.41%
+        );
+        background-blend-mode: screen;
+        background-color: #9fa5b7;
+        font-size: 20px;
         font-weight: bold;
-        text-align: left;
         border: none;
-        padding: 15px 20px;
         border-radius: 20px;
         cursor: pointer;
-        width: 184px;
-        height: 124px;
-        flex-shrink: 0;
+        width: 120px;
+        height: 120px;
+        background-blend-mode: screen;
+        box-shadow: 0px 0px 3.55px 0px #9fa5b7;
+        color: #133e87;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
 
         &:hover {
-          background: #c01c05;
+          box-shadow: 0px 0px 14px 0px #408cff;
+          color: #408cff;
         }
       }
     }
+    .enter_now_btn{
+      background: linear-gradient(180deg, #6F97CE 6.79%, #2C3F5D 95.07%);
+      padding: 20px 30px;
+      font-size: 20px;
+      color: white;
+      width: fit-content;
+      border-radius: 50px;
+      margin-top: 10px;
+    }
     .gameLogo {
-      max-height: 46px;
+      max-height: 50px;
+      max-width: 50px;
     }
   }
 }
 .carousel {
+  img {
+    border-radius: 30px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
   .el-carousel {
     position: relative;
   }
 
   @media (max-width: 1920px) {
     .el-carousel {
-      width: 100vw;
+      width: 90vw;
     }
   }
 
@@ -427,20 +466,19 @@ input[type="number"] {
   // }
 
   .el-carousel__button {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background: transparent;
-    border: 2px solid #c01c05;
+    background: #d9d9d9;
     opacity: 1;
   }
 
   .el-carousel__indicator.is-active button {
-    width: 18px;
-    height: 18px;
-    background: #ff1f00;
-    border: 2px solid #ff1f00;
-    box-shadow: 2px 2px 9px 0px rgba(249, 68, 47, 0.71);
+    width: 50px;
+    height: 20px;
+    background: #476896;
+    border-radius: 100px;
+    border: 2px solid #476896;
   }
   .el-carousel__arrow {
     background-color: transparent;
@@ -451,8 +489,8 @@ input[type="number"] {
   .el-icon-arrow-left::before {
     content: "";
     display: inline-block;
-    width: 35.285px;
-    height: 60.94px;
+    width: 80px;
+    height: 80px;
     background-image: url("/src/assets/image/leftArrow.png");
     background-size: cover;
     position: absolute;
@@ -461,8 +499,8 @@ input[type="number"] {
   .el-icon-arrow-right::before {
     content: "";
     display: inline-block;
-    width: 35.285px;
-    height: 60.94px;
+    width: 80px;
+    height: 80px;
     background-image: url("/src/assets/image/rightArrow.png");
     background-size: cover;
     position: absolute;

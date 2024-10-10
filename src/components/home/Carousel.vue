@@ -5,7 +5,12 @@
         v-for="(item, index) in $store.state.static.bannerResources"
         :key="index"
       >
-        <img :src="$store.state.iconUrl + item.banner_pc" @click="jump(item)" />
+        <div style="padding: 0 40px">
+          <img
+            :src="$store.state.iconUrl + item.banner_pc"
+            @click="jump(item)"
+          />
+        </div>
       </el-carousel-item>
     </el-carousel>
   </div>

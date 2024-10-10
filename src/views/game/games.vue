@@ -1,44 +1,53 @@
 <template>
   <div>
-    <div v-if="!$route.query.code" class="game_bg">
-      <div class="game_container">
-        <div class="game_text">
-          <h1 class="game_title">{{ $en("games.electronics") }}</h1>
-          <div style="font-size: 88px; font-weight: bold">电子娱乐厅</div>
-          <div style="font-size: 14px; font-weight: bold; width: 522px">
-            {{ $en("games.electronics_text") }}
-          </div>
-          <img
-            src="../../assets/image/electronics/electronicsSponsors.png"
-            style="max-width: 600px; max-height: 72px"
-          />
-          <div
-            class="game_types"
-            v-for="(item, index) in $store.state.appIndex"
-            :key="index"
-            v-show="item.gameType == 5"
-          >
-            <button
-              v-for="(game, n) in item.platforms"
-              :key="n"
-              @click="$goGame(game, n)"
-            >
-              <img
-                class="gameLogo"
-                :src="
-                  $store.state.iconUrl +
-                  $store.state.static.gameIcon[game.uniqueCode]
-                "
-              />
-              <div>{{ game.platformName }}</div>
-            </button>
-          </div>
+    <div class="game_container" v-if="!$route.query.code">
+      <div class="game_text">
+        <div class="game_title">{{ $en("games.sports") }}</div>
+        <div style="font-size: 50px">ELECTRONICS</div>
+        <div style="font-size: 20px; width: 518px; color: black">
+          {{ $en("games.sports_text") }}
         </div>
         <img
-          class="char"
-          src="../../assets/image/electronics/electronicsChar.png"
+          src="../../assets/image/electronics/electronicsSponsors.png"
+          style="height: 60px;width: 390px;"
+          :alt="$en('games.sports_text')"
         />
+        <div
+          class="game_types"
+          v-for="(item, index) in $store.state.appIndex"
+          :key="index"
+          v-show="item.gameType == 5"
+        >
+          <button
+            class="blendScreen"
+            v-for="(game, n) in item.platforms"
+            :key="n"
+            :style="
+              uCode == game
+                ? {
+                    'box-shadow': '0px 0px 14px 0px #408cff',
+                    color: '#408cff',
+                  }
+                : {}
+            "
+            @click="
+              uCode = game;
+              $store.state.unique = game.uniqueCode;
+            "
+          >
+            <img
+              class="gameLogo"
+              :src="
+                $store.state.iconUrl +
+                $store.state.static.gameIcon[game.uniqueCode]
+              "
+            />
+            <div>{{ game.platformName }}</div>
+          </button>
+        </div>
+        <div class="enter_now_btn" @click="$goGame(uCode)">进入游戏</div>
       </div>
+      <img class="char" src="../../assets/image/electronics/electronicsChar.png" />
     </div>
     <div class="games view_width" v-if="$route.query.code">
       <img class="cover" src="../../assets/image/electronics/gamesCover.jpg" />
@@ -77,6 +86,12 @@ import state from "@/store/state";
 
 export default {
   name: "PCXLGameElectronicGames",
+
+  data() {
+    return {
+      uCode: "",
+    };
+  },
   methods: {
     getgameLoginpcHallGameLogin(gameCode, hallUniqueCode) {
       gameLoginpcHallGameLogin(gameCode, hallUniqueCode).then((res) => {
@@ -95,39 +110,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.game_bg {
-  background-image: url("../../assets/games/game5.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 904px;
-  min-width: 1200px;
-  display: flex;
-  scale: 1.01;
-}
 .char {
   position: absolute;
+  top: 0;
+  right: 150px;
   height: 100%;
   z-index: 1;
-  right: 80px;
-  top: 50px;
-  // z-index: -1;
 }
 .games {
-  background-image: url("../../assets/image/electronics/gamesBg.jpg");
-  background-size: cover;
-  height: 904px;
+  // background-image: url("../../assets/image/electronics/gamesBg.jpg");
+  // background-size: cover;
+  // height: 904px;
   .cover {
-    height: 430px;
+    height: 802px;
+    width: 100%;
   }
   .inner {
     width: 1296px;
     height: 424px;
     flex-shrink: 0;
     border-radius: 30px;
-    background: rgba(236, 236, 236, 0.55);
-    box-shadow: 4px 15px 60px 0px rgba(0, 0, 0, 0.2);
-    margin: 0 auto;
-    margin-top: 20px;
+    background: #B5C3D5;
+    box-shadow: 0px 0px 14px 0px #B5C3D5;
+    margin: 32px auto;
     padding: 18px 32px;
   }
   .games_container {
@@ -168,7 +173,7 @@ export default {
           height: 39px;
           flex-shrink: 0;
           border-radius: 10px;
-          background: #b53d1e;
+          background: linear-gradient(180deg, #6F97CE 6.79%, #2C3F5D 95.07%);
           font-size: 14px;
           color: #fff;
           border: none;

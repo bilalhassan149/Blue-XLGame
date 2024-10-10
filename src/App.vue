@@ -9,7 +9,7 @@
   >
     <alerts></alerts>
     <headers v-show="statusLo"></headers>
-    <router-view style="min-height: 600px"></router-view>
+    <router-view></router-view>
     <bottom v-show="statusLo && bottomNav" />
     <div class="about" @click="$about" v-show="statusLo && bottomNav">
       <img src="../src/assets/image/customerServiceIcon.png" />

@@ -1,67 +1,74 @@
 <template>
-  <div class="game_bg">
-    <div class="game_container">
-      <div class="game_text">
-        <div class="game_title">{{ $en("games.dice") }}</div>
-        <h1 style="font-size: 88px; font-weight: bold">在线真人</h1>
-        <div style="font-size: 14px; font-weight: bold; width: 522px">
-          {{ $en("games.dice_text") }}
-        </div>
-        <img
-          :alt="$en('games.dice_text')"
-          src="../../assets/image/realdice/realDiceSponsors.png"
-          style="max-height: 72px; object-fit: cover"
-        />
-        <div
-          class="game_types"
-          v-for="(item, index) in $store.state.appIndex"
-          :key="index"
-          v-show="item.gameType == 3"
-        >
-          <button
-            v-for="(game, n) in item.platforms"
-            :key="n"
-            @click="$goGame(game, n)"
-          >
-            <img
-              class="gameLogo"
-              :src="
-                $store.state.iconUrl +
-                $store.state.static.gameIcon[game.uniqueCode]
-              "
-            />
-            <div>{{ game.platformName }}</div>
-          </button>
-        </div>
+  <div class="game_container">
+    <div class="game_text">
+      <div class="game_title">{{ $en("games.dice") }}</div>
+      <div style="font-size: 50px">CASINO</div>
+      <div style="font-size: 20px; width: 518px; color: black">
+        {{ $en("games.sports_text") }}
       </div>
-      <img class="char" src="../../assets/image/realdice/realDiceChar.png" />
+      <img
+        src="../../assets/image/realdice/realDiceSponsors.png"
+        style="height: 60px; width: 512px"
+        :alt="$en('games.sports_text')"
+      />
+      <div
+        class="game_types"
+        v-for="(item, index) in $store.state.appIndex"
+        :key="index"
+        v-show="item.gameType == 3"
+      >
+        <button
+          class="blendScreen"
+          v-for="(game, n) in item.platforms"
+          :key="n"
+          :style="
+            uCode == game
+              ? {
+                  'box-shadow': '0px 0px 14px 0px #408cff',
+                  color: '#408cff',
+                }
+              : {}
+          "
+          @click="
+            uCode = game;
+            $store.state.unique = game.uniqueCode;
+          "
+        >
+          <img
+            class="gameLogo"
+            :src="
+              $store.state.iconUrl +
+              $store.state.static.gameIcon[game.uniqueCode]
+            "
+          />
+          <div>{{ game.platformName }}</div>
+        </button>
+      </div>
+      <div class="enter_now_btn" @click="$goGame(uCode)">进入游戏</div>
     </div>
+    <img class="char" src="../../assets/image/realdice/realDiceChar.png" />
   </div>
 </template>
 
 <script>
 export default {
+  name: "PCXLGameSports",
+
   data() {
-    return {};
+    return {
+      uCode: "",
+    };
   },
   methods: {},
 };
 </script>
 
-<style lang="scss" scoped>
-.game_bg {
-  background-image: url("../../assets/games/game3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 904px;
-  min-width: 1200px;
-  display: flex;
-  scale: 1.01;
-}
+<style lang="scss">
 .char {
   position: absolute;
   top: 0;
-  right: 180px;
+  right: 150px;
   height: 100%;
+  z-index: 1;
 }
 </style>
