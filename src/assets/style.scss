@@ -145,7 +145,7 @@ input[type="number"] {
 //登录类
 
 .login-page {
-  padding-right: 400px;
+  // padding-right: 400px;
   .bg {
     background: #efefef url("./assets/image/login.jpg") no-repeat right;
     height: 100vh;
@@ -167,21 +167,24 @@ input[type="number"] {
   box-shadow: 0px 4px 39px 0px rgba(0, 0, 0, 0.65);
 }
 .login-main {
-  position: fixed;
-  top: 0;
-  right: 0;
+  // position: fixed;
+  // top: 0;
+  // right: 0;
+  // height: 100vh;
+  background-size: cover;
+  // background-repeat: no-repeat;
+  background-image: url("./assets/image/auth_bg.jpg");
   height: 100vh;
-  background: linear-gradient(140deg, #c91d05, #650f00);
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  width: 640px;
+  // border-top-left-radius: 20px;
+  // border-bottom-left-radius: 20px;
+  // width: 640px;
   color: #fff;
   user-select: none;
-  box-shadow: -33px 17px 60px rgba(0, 0, 0, 0.7);
+  // box-shadow: -33px 17px 60px rgba(0, 0, 0, 0.7);
   .title {
     font-size: 36px;
-    margin: 60px 0 35px 0;
     color: #fff;
+    margin-bottom: 20px;
   }
   .text {
     padding: 14px 10px;
@@ -193,6 +196,7 @@ input[type="number"] {
     font-size: 20px;
     color: #fff;
     cursor: pointer;
+    margin: 36px 0;
   }
   .toggle {
     font-weight: bold;
@@ -222,29 +226,33 @@ input[type="number"] {
     width: 2px;
   }
   .inputs {
-    padding: 10px 10px;
-    margin-bottom: 30px;
-    font-size: 16px;
-    border: none;
-    border-bottom: 2px solid #fff;
-    background: none;
-    width: 460px;
-    font-weight: bold;
-    color: #fff;
-    outline: none;
+    padding: 16px 12px;
+    margin-bottom: 16px;
+    background: #476896;
+    border-radius: 16px;
+    width: 560px;
+    input {
+      outline: none;
+      background: transparent;
+      flex: 1;
+      width: 100%;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+    }
   }
   .save-main {
-    width: 440px;
+    width: 540px;
   }
   .pass {
-    font-size: 14px;
+    font-size: 24px;
     color: #fff;
     padding: 3px 0;
     border-bottom: 2px solid;
     text-decoration: none;
   }
   .save {
-    font-size: 14px;
+    font-size: 24px;
     color: #fff;
     cursor: pointer;
   }
@@ -254,17 +262,19 @@ input[type="number"] {
     border-radius: 2px;
     display: inline-block;
     margin-right: 8px;
+    font-size: 24px;
   }
   .loginBtn {
     font-size: 16px;
     font-weight: bold;
-    color: #304258;
+    color: white;
     background: #fff;
-    border-radius: 100px;
-    width: 174px;
-    height: 50px;
-    margin: 25px 0 45px 0;
+    border-radius: 16px;
+    margin-top: 32px;
+    width: 560px;
+    height: 72px;
     cursor: pointer;
+    background: linear-gradient(180deg, #99c1fd -13.11%, #126ddf 100%);
   }
   .link {
     font-size: 16px;
@@ -274,17 +284,29 @@ input[type="number"] {
     text-decoration: none;
     color: #fff;
   }
-  .reg {
+  .authNav {
     color: #fff;
-    font-size: 16px;
-    margin-bottom: 24px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    font-weight: 400;
+    .authNavBtn {
+      border-radius: 16px;
+      background: #476896;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      width: 180px;
+      height: 96px;
+      cursor: pointer;
+    }
   }
   .reg-text {
-    padding: 1px 0;
-    border-bottom: 2px solid;
     color: #fff;
-    margin-left: 8px;
-    font-weight: bold;
   }
   .el-icon-check {
     font-size: 15px;
@@ -416,8 +438,8 @@ input[type="number"] {
         }
       }
     }
-    .enter_now_btn{
-      background: linear-gradient(180deg, #6F97CE 6.79%, #2C3F5D 95.07%);
+    .enter_now_btn {
+      background: linear-gradient(180deg, #6f97ce 6.79%, #2c3f5d 95.07%);
       padding: 20px 30px;
       font-size: 20px;
       color: white;

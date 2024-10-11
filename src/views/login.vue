@@ -1,17 +1,15 @@
 <template>
   <div
-    class="f-s login-page"
+    class="login-page"
     v-loading="loading"
     :element-loading-text="$en('alerts.loadings')"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.6)"
   >
-    <div class="bg">
-      <router-link to="/">
-        <img src="../assets/logo.png" style="margin: 50px 50px" />
-      </router-link>
-    </div>
     <div class="login-main f-c f">
+      <router-link to="/">
+        <img src="../assets/authLogo.png" style="width: 150px; height: 160px" />
+      </router-link>
       <div class="f-c toggle-main">
         <div
           class="text"
@@ -36,25 +34,23 @@
         </div>
       </div>
       <b class="title">{{ $en("auth.login") }}</b>
-
       <div v-show="loginType">
-        <div>
+        <div class="inputs">
           <input
-            class="inputs"
+            class=""
             :placeholder="$en('register.username')"
             v-model="name"
           />
         </div>
-        <div class="input-body" :class="show ? 'showClass' : ''">
+        <div class="inputs" :class="show ? 'showClass' : ''">
           <input
-            class="inputs"
             :placeholder="$en('register.password')"
             maxlength="50"
             type="password"
             v-model="password"
           />
           <input
-            class="inputs hide"
+            class="hide"
             :placeholder="$en('register.password')"
             maxlength="50"
             v-model="password"
@@ -117,11 +113,24 @@
       <div class="f-c loginBtn" @click="loginBtnFx">
         {{ $en("register.sign_in") }}
       </div>
-      <div class="f-c reg">
-        {{ $en("auth.no_acc") }}
-        <router-link class="reg-text" to="/register">{{
-          $en("register.button")
-        }}</router-link>
+      <div class="authNav">
+        <router-link class="reg-text" to="/register">
+          <div class="authNavBtn">
+            <img src="../assets/image/profile-circle.png" alt="" />
+            <div>前往登录</div>
+          </div></router-link
+        >
+        <router-link class="reg-text" to="/">
+          <div class="authNavBtn">
+            <img src="../assets/image/profile-add.png" alt="" />
+            <div>游客进入</div>
+          </div></router-link
+        >
+
+        <div class="authNavBtn" @click="$about">
+          <img src="../assets/image/customerIcon.png" alt="" />
+          <div>在线客服</div>
+        </div>
       </div>
     </div>
   </div>
